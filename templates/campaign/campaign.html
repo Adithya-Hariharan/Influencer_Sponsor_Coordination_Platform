@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Campaign
+{% endblock %}
+
+{% block content %}
+    
+    <a href="{{ url_for('sponsor_profile') }}" class="btn btn-primary">Profile</a>
+    <a href = "{{url_for('sponsor_dashboard')}}" class = "btn btn-primary">Dashboard</a>
+
+    <h2>Campaigns</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Campaign ID</th>
+                <th>Title</th>
+                <th>Budget</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Ad Requests</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for campaign in campaigns %}
+            <tr>
+                <td>{{campaign.id}}</td>
+                <td>{{campaign.title}}</td>
+                <td>{{campaign.budget}}</td>
+                <td>{{campaign.desc}}</td>
+                <td>{{campaign.start_date}}</td>
+                <td>{{campaign.end_date}}</td>
+                <td>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Influencer</th>
+                                <th>Proposed Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for request in campaign.ad_requests %}
+                            <tr>
+                                <td>{{ request.influencer_name }}</td>
+                                <td>{{ request.proposed_amount }}</td>
+                                <td>{{ request.status }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                <td>
+                    <a href="{{url_for('edit_campaign', id=campaign.id)}}" class="btn btn-primary">
+                        <i class="fas fa-edit   "></i>
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a href="{{url_for('delete_campaign', id=campaign.id)}}" class="btn btn-primary">
+                        <i class="fas fa-trash  "></i>
+                        Delete
+                    </a>
+                </td>
+                <td>
+                    <form method="POST" action="{{ url_for('request_ad', id=campaign.id) }}">
+                        <h6>Search by Influencer Name</h6>
+                        <select name="influencers" class="form-control" multiple>
+                            {% for influencer in influencers %}
+                                <option value="{{ influencer.id }}">{{ influencer.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <h6>Search by Niche</h6>
+                        <select name="influencers" class="form-control" multiple>
+                            {% for influencer in influencers %}
+                                <option value="{{ influencer.id }}">{{ influencer.category }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <button type="submit" class="btn btn-success mt-2">Send Ad Request</button>
+                    </form>
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div style = "text-align:center">
+        <a href = "{{url_for('add_campaign')}}" class = "btn btn-success" style="padding: 15px 30px; font-size: 20px">
+            <i class="fas fa-plus    "></i>
+            Add Campaigns
+        </a>
+        
+    </div>
+{% endblock %}

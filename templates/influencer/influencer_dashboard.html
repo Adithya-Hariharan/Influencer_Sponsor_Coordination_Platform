@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    
+    <a href="{{ url_for('influencer_profile') }}" class="btn btn-primary">Profile</a>
+    
+    <div class="dashboard-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Payment Amount</th>
+                    <th>Proposed Amount</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if campaigns %}
+                    {% for item in campaigns %}
+                        {% for ad_request in item.ad_request %}
+                        <tr>
+
+                            <td>{{ item.campaign.id }}</td>
+                            <td>{{ item.campaign.title }}</td>
+                            <td>{{ item.campaign.budget}}</td>
+                            <td>{{ ad_request.proposed_amount }}</td>
+                            <td>{{ item.campaign.desc }}</td>
+                            <td>{{ item.campaign.start_date }}</td>
+                            <td>{{ item.campaign.end_date }}</td>
+                            <td>{{ ad_request.status }}</td>
+                            <td>
+                                <form action="{{ url_for('accept_ad', ad_request_id=ad_request.id) }}" method="POST">
+                                    <span><button type="submit" class="btn btn-primary"></span>
+                                        <i class="fas fa-check"></i> Accept
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{{ url_for('reject_ad', ad_request_id=ad_request.id) }}" method="POST" >
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('negotiate_ad', ad_request_id=ad_request.id) }}" class="btn btn-primary">
+                                    <button type = "submit" class = "btn btn-primary">
+                                    <i class="fas fa-handshake"></i> Negotiate
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="9">No campaigns found.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

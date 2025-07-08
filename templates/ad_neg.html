@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Negotiate Ad
+{% endblock %}
+
+{% block content %}
+    <h2>Negotiate Ad Request</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="proposed_amount">Proposed Amount:</label>
+            <input type="integer" id="proposed_amount" name="proposed_amount" class="form-control" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit Proposal</button></form>
+        <br>
+        <a href="{{ url_for('influencer_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+    
+    </form>
+    
+{% endblock %}

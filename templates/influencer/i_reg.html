@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+    
+{% block title %}
+    Influencer Register page
+{% endblock %}
+{% block content %}
+<h1 class = "display-1">Influencer Registeration</h1>
+<form action="" class="form" method = "post">
+    <br>
+    <div class = "form-group">
+        <label for = "name">Name</label class = "form-label">
+        <input type="text", name = 'name' required class = "form-control">
+    </div>
+    <br>
+
+    <div class = "form-group">
+        <label for = "username" class = "form-label">Username</label>
+        <input type="text", name = 'username' required class = "form-control">
+    </div>
+    <br>
+    <div class = "form-group">
+        <label for = "password">Password</label class = "form-label">
+        <input type="password", name = 'password' required class = "form-control">
+    </div>
+    <br>
+    <div class = "form-group">
+        <label for = "reach">Reach</label class = "form-label">
+        <input type="integer", name = 'reach' required class = "form-control">
+    </div>
+    <br>
+    <div class = "form-group">
+        <label for = "category">Category</label class = "form-label">
+        <input type="text", name = 'category' required class = "form-control">
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="submit" value = "Register as Influencer" class = "btn btn-primary">
+    </div>
+</form>
+
+
+{% endblock %}

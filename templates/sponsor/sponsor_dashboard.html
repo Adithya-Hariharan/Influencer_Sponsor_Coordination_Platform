@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+    <h1 style = "text-align:center">Sponsor Dashboard</h1>
+    <span><a href="{{ url_for('sponsor_profile') }}" class="btn btn-primary">Profile</a></span>
+    <span><a href = "{{url_for('campaign')}}" class = "btn btn-primary">Campaign</a></span>
+
+
+{% endblock %}

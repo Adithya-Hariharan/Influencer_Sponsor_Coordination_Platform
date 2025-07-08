@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Negotiate
+{% endblock %}
+
+{% block content %}
+    <h1>Negotiation</h1>
+    
+    <form method="post">
+        <div class="form-group">
+            <label for="proposed_amount">Proposed Amount:</label>
+            <input type="text" id="proposed_amount" name="proposed_amount" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

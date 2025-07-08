@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Profile page
+{% endblock %}
+
+{% block content %}
+    <h1>Hello {{influencer.username}}!</h1>
+    <div  class = "admin_profile_pic">
+        <img src="https://api.dicebear.com/6.x/lorelei/svg?seed={{influencer.username}}" width="100" alt="Profile picture">
+    </div>
+    <a href="{{url_for('influencer_logout')}}" class="btn btn-outline-danger">Logout</a>
+{% endblock %}
